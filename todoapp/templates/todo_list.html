@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{%block content%}
+<br>
+<div class="alert alert-info" role="alert">
+    <strong>Welcome here! </strong> Please add todo items of yours.
+  </div>
+<form action="/addTodoItem/" method = "post">{% csrf_token %}
+    <input type="text" name="content" placeholder="Type your items here">
+    <input type="submit" class="btn btn-success" value="Add Item">
+    
+</form> 
+
+
+{% for i in all_items %}
+   <li><strong> <i> {{i.content}}</i> </strong>
+    
+    <form action="/deleteTodoItem/{{i.id}}/" method = "post">{% csrf_token %}
+        <!-- <input type="submit" class="btn btn-danger" value="delete">  -->
+        <button type="submit" class="btn btn-link">delete</button>
+    </form>  
+
+   </li> 
+
+{% endfor %}
+
+
+
+
+
+
+
+
+{% endblock content%}
